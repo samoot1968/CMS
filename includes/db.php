@@ -14,7 +14,7 @@ foreach($db as $key => $value)
 	define(strtoupper($key), $value);
 }
  
- */
+*/
 
 	$mysqli = mysqli_connect('localhost', 'root', '', 'cms');
 

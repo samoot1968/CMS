@@ -16,9 +16,26 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
                 
-                <?php 
-                
-                $query = "SELECT * FROM posts";
+                <?php
+
+
+                if (isset($_POST['submit'])) {
+                    $search = $_POST['search'];
+     
+                    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
+                    $search_query = mysqli_query($mysqli, $query);
+
+                    if(!$search_query) {
+                        die("QUERY FAILED". mysqli_error($mysqli));
+                    }
+
+                    $count = mysqli_num_rows($search_query);
+        
+                    if($count == 0){
+                     // Remember to create Javascript warning at the end to make it more moden and more usable
+                        echo "No result";
+                    }else{
+                        $query = "SELECT * FROM posts";
 
                 $select_all_posts_query = mysqli_query($mysqli, $query);
 
@@ -55,6 +72,16 @@
     
                     <!-- Close while loop -->
                    <?php } ?>
+
+        }
+
+}
+    
+
+
+
+
+                
 
 
                
